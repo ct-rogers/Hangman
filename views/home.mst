@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mystery Word</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Mystery Word!</h1>
+      <p class = "guesscounter">
+        You have {{count}} incorrect guesses left.
+      </p>
+      <p>
+        {{#underscores}}
+          {{.}}
+        {{/underscores}}
+      </p>
+      {{#winCondition}}
+        <h1>You Are Today's Big Winner!</h1>
+        <form class="" action="/again" method="post">
+          <button type="submit" name="againbutton">Play Again?</button>
+        </form>
+      {{/winCondition}}
+      {{#loseCondition}}
+        <h1>Close ... But No Cigar!</h1>
+        <p>The word was {{#secretword}}{{.}}{{/secretword}}.</p>
+        <form class="" action="/again" method="post">
+          <button type="submit" name="againbutton">Play Again?</button>
+        </form>
+      {{/loseCondition}}
+      {{#playing}}
+      <form class="" action="/" method="post">
+        <input type="text" name="guess" value="">
+        <button type="submit" name="guessbutton">Make a Guess</button>
+      </form>
+      {{/playing}}
+      {{#errors}}
+        <p>{{msg}}</p>
+      {{/errors}}
+      <p>
+        Guessed Letters:
+        {{#guesses}}<span>{{.}}, </span>{{/guesses}}
+      </p>
+    </div>
+  </body>
+</html>
